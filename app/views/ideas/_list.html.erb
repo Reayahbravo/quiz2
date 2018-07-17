@@ -1,0 +1,18 @@
+<br clear="all">
+<div class="margin40">
+    <% @ideas.each do |idea| %>
+        <div class="container hundyP">
+            <div class="card-body hundyP">
+                <%= link_to(
+                    idea.title,
+                    idea_path(idea.id),
+                    ) %>
+                <p><%= idea.description.truncate(150) %></p>
+                <br />
+                <small>
+                    Posted <%= time_ago_in_words(idea.created_at) %> ago
+                </small>
+            </div>
+        </div>
+    <% end %>
+</div>
