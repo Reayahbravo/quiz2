@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav id="myNav" class="navbar navbar-dark bg-light navbar-right hundyP">
+        <div class="main">
+          <div class="navbar-brand text-primary" href="#!">ideaHUB</div>
+            <span class="floatRight">
+
+              <%= link_to 'Ideas', ideas_path %>
+              <% if user_signed_in? %>
+                <%= link_to 'New Idea', new_idea_path %>
+
+
+                🤔 Hi, <%= link_to(current_user.first_name, edit_user_path(current_user.id)) %></div>
+                |
+  
+                <%= link_to('Sign Out', session_path, method: :delete) %>
+              <% else %>
+                <%= link_to('Sign In', new_session_path) %>
+                |
+                <%= link_to('Sign Up', new_user_path) %>
+            
+              <% end %>
+            </span>
+          </div>   
+        </div>
+    </nav>
+    <br clear="all">
+    <div class="container-fluid marginTop">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type %> alert-dismissible fade show">
+          <%= message %>
+          <div class="main">
+          </div>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
